@@ -1,0 +1,44 @@
+<div class="page">
+  <div class="chart">
+    <p>mrcha</p>
+  </div>
+  <div class="summary">
+    <div class="d-flex flex-column bd-highlight mb-3">
+      <div class="p-2 summary-header">Interest Level 2</div>
+      <div class="p-2 bd-highlight">
+        <table class="table table-hover table-borderless ">
+          <thead>
+            <tr>
+              <th scope="col">Interest</th>
+              <th scope="col">Customers</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let item of interestList">
+            <tr>
+              <td>{{item.name}}</td>
+              <td>{{item.customers}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="filter">
+    <h1 class="hd">Filter</h1>
+    <div class="d-flex flex-column bd-highlight mb-3">
+      <div *ngFor="let item of interestList" class="d-flex flex-row justify-content-between">
+        <div class="d-flex flex-row bd-highlight mb-3">
+          <div class="p-2 bd-highlight">{{item.name}}</div>
+          <div class="p-2 bd-highlight">{{item.customers}}</div>
+
+        </div>
+
+      </div>
+    </div>
+    <!-- <mat-slider thumbLabel [displayWith]="formatLabel" [(ngModel)]="value" tickInterval="1000" step="1000" min="1000"
+      max="100000" aria-label="units"></mat-slider> -->
+  </div>
+
+</div>

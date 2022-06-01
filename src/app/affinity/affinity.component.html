@@ -1,6 +1,17 @@
+<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="page">
   <div class="chart">
-    <p>mrcha</p>
+    <div>
+      <canvas id="canvas">{{chart}}</canvas>
+    </div>
+    <div class="example-button-container" *ngIf="interestList.length > 0">
+      <button mat-fab color="primary" matTooltip="refresh" (click)="refreshDataList()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <button mat-fab color="warn" matTooltip="clear" (click)="deleteDataList()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
   </div>
   <div class="summary">
     <div class="d-flex flex-column bd-highlight mb-3">
@@ -13,32 +24,29 @@
               <th scope="col">Customers</th>
             </tr>
           </thead>
-          <tbody *ngFor="let item of interestList">
+          <tbody *ngFor="let item of interestList; index as i">
             <tr>
               <td>{{item.name}}</td>
-              <td>{{item.customers}}</td>
+              <td>{{item.customers | number}}</td>
             </tr>
           </tbody>
         </table>
       </div>
-
     </div>
-
   </div>
   <div class="filter">
-    <h1 class="hd">Filter</h1>
-    <div class="d-flex flex-column bd-highlight mb-3">
-      <div *ngFor="let item of interestList" class="d-flex flex-row justify-content-between">
-        <div class="d-flex flex-row bd-highlight mb-3">
-          <div class="p-2 bd-highlight">{{item.name}}</div>
-          <div class="p-2 bd-highlight">{{item.customers}}</div>
-
+    <h1>Filter</h1>
+    <div *ngFor="let item of interestList; index as i">
+      <div class="row">
+        <div class="col-6">{{item.name}}</div>
+        <div class="col-6">
+          <input type="number" matInput placeholder="" [min]="0" (ngModel)="item.label" [value]="item.customers"
+            (change)="onKeyDownEvent($event, item)">
         </div>
-
       </div>
+      <mat-slider [max]="item.maxCustomers" [min]="0" thumbLabel [displayWith]="formatLabel" tickInterval="1000"
+        step="1" (ngModel)="item.label" [value]="item.customers" (change)="onSliderChange($event, item)">
+      </mat-slider>
     </div>
-    <!-- <mat-slider thumbLabel [displayWith]="formatLabel" [(ngModel)]="value" tickInterval="1000" step="1000" min="1000"
-      max="100000" aria-label="units"></mat-slider> -->
   </div>
-
-</div>
+</div> -->

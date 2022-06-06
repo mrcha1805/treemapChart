@@ -1,10 +1,10 @@
-<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="page">
   <div class="chart">
-    <div>
+    <div class="chart-container">
       <canvas id="canvas">{{chart}}</canvas>
     </div>
-    <div class="example-button-container" *ngIf="interestList.length > 0">
+    <div class="example-button-container">
       <button mat-fab color="primary" matTooltip="refresh" (click)="refreshDataList()">
         <mat-icon>refresh</mat-icon>
       </button>
@@ -35,13 +35,20 @@
     </div>
   </div>
   <div class="filter">
-    <h1>Filter</h1>
+    <div class="row">
+      <div class="col-6">
+        <h1>Filter</h1>
+      </div>
+      <div class="col-6">
+        <input type="number" placeholder="set values" (change)="onInputChangeAll($event)" [(ngModel)]="term">
+      </div>
+    </div>
     <div *ngFor="let item of interestList; index as i">
       <div class="row">
         <div class="col-6">{{item.name}}</div>
         <div class="col-6">
-          <input type="number" matInput placeholder="" [min]="0" (ngModel)="item.label" [value]="item.customers"
-            (change)="onKeyDownEvent($event, item)">
+          <input type="number" placeholder="" [min]="0" (ngModel)="item.label" [value]="item.customers"
+            (change)="onInputChange($event, item)">
         </div>
       </div>
       <mat-slider [max]="item.maxCustomers" [min]="0" thumbLabel [displayWith]="formatLabel" tickInterval="1000"
@@ -49,4 +56,4 @@
       </mat-slider>
     </div>
   </div>
-</div> -->
+</div>
